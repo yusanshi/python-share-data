@@ -4,9 +4,7 @@ import numpy as np
 
 
 def increase():
-    s = SharedNumpyArray(name=shared.name,
-                         shape=shared.data.shape,
-                         dtype=shared.data.dtype)
+    s = SharedNumpyArray(identifier=shared.identifier)
     for _ in range(1000):
         with lock:
             s.data -= 1
@@ -15,9 +13,7 @@ def increase():
 
 
 def decrease():
-    s = SharedNumpyArray(name=shared.name,
-                         shape=shared.data.shape,
-                         dtype=shared.data.dtype)
+    s = SharedNumpyArray(identifier=shared.identifier)
     for _ in range(1000):
         with lock:
             s.data += 1

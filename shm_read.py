@@ -4,9 +4,7 @@ import numpy as np
 
 
 def worker_fn():
-    s = SharedNumpyArray(name=shared.name,
-                         shape=shared.data.shape,
-                         dtype=shared.data.dtype)
+    s = SharedNumpyArray(identifier=shared.identifier)
     for _ in range(1000):
         s.data.sum()
 
