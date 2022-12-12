@@ -16,7 +16,7 @@ if __name__ == '__main__':
     print('Before', shared.data.sum())
     workers = []
     for _ in range(8):
-        workers.append(Process(target=worker_fn, ))
+        workers.append(Process(target=worker_fn))
     for x in workers:
         x.start()
     for x in workers:

@@ -27,8 +27,8 @@ if __name__ == '__main__':
     lock = Lock()
     workers = []
     for _ in range(4):
-        workers.append(Process(target=increase, ))
-        workers.append(Process(target=decrease, ))
+        workers.append(Process(target=increase))
+        workers.append(Process(target=decrease))
     for x in workers:
         x.start()
     for x in workers:
