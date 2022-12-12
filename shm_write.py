@@ -24,6 +24,8 @@ def decrease():
 if __name__ == '__main__':
     shared = SharedNumpyArray(array=np.ones((10000, 100)))
     print('Before', shared.data.sum())
+    # Note: don't need the lock if different workers always write to different locations.
+    # e.g., worker 0 writes to row 0, 4, 8, ..., workers 1 writes to row 1, 5, 9, ...
     lock = Lock()
     workers = []
     for _ in range(4):

@@ -4,7 +4,7 @@ Some examples of how to share data (especially tensors or arrays in deep learnin
 
 Tips:
 - Use `ultradict.py` for sharing small data.
-- Use `shm_*.py` and `torch_*.py` for sharing large tensors or arrays.
+- Use `shm_*.py` or `torch_*.py` for sharing large tensors or arrays.
 
 Note: for Linux only.
 
