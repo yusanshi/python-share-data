@@ -7,7 +7,7 @@ import numpy as np
 
 class SharedNumpyArray(SharedMemory):
 
-    def __init__(self, array=None, identifier=None):
+    def __init__(self, *, array=None, identifier=None):
         if array is None:
             # attach to the existing shared memory
             # `SharedNumpyArray(identifier)`
@@ -44,8 +44,8 @@ class SharedNumpyArray(SharedMemory):
 
 
 if __name__ == '__main__':
-    a = SharedNumpyArray(array=np.ones((1000, 1000)))
-    b = SharedNumpyArray(identifier=a.identifier)
+    a = SharedNumpyArray(array=np.ones((1000, 1000)))  # create
+    b = SharedNumpyArray(identifier=a.identifier)  # attach
 
     print(a.data, '\n\n', b.data, '\n\n')
     a.data[:500] += 1
