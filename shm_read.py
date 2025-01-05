@@ -1,6 +1,8 @@
 from multiprocessing import Process
-from shared_numpy import SharedNumpyArray
+
 import numpy as np
+
+from shared_numpy import SharedNumpyArray
 
 
 def worker_fn():

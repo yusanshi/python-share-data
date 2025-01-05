@@ -1,13 +1,15 @@
-from multiprocessing import Process, Lock
-from shared_numpy import SharedNumpyArray
+from multiprocessing import Lock, Process
+
 import numpy as np
+
+from shared_numpy import SharedNumpyArray
 
 
 def increase():
     s = SharedNumpyArray(identifier=shared.identifier)
     for _ in range(1000):
         with lock:
-            s.data -= 1
+            s.data += 1
 
     s.close()
 
@@ -16,7 +18,7 @@ def decrease():
     s = SharedNumpyArray(identifier=shared.identifier)
     for _ in range(1000):
         with lock:
-            s.data += 1
+            s.data -= 1
 
     s.close()
 

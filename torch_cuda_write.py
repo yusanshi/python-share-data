@@ -1,5 +1,5 @@
-from torch.multiprocessing import Process, set_start_method
 import torch
+from torch.multiprocessing import Process, set_start_method
 
 # TODO: why don't need the lock
 # TODO: why don't need the share_memory_
@@ -8,12 +8,12 @@ import torch
 
 def increase(data):
     for _ in range(1000):
-        data -= 1
+        data += 1
 
 
 def decrease(data):
     for _ in range(1000):
-        data += 1
+        data -= 1
 
 
 if __name__ == '__main__':
@@ -24,8 +24,8 @@ if __name__ == '__main__':
 
     workers = []
     for _ in range(4):
-        workers.append(Process(target=increase, args=(data, )))
-        workers.append(Process(target=decrease, args=(data, )))
+        workers.append(Process(target=increase, args=(data,)))
+        workers.append(Process(target=decrease, args=(data,)))
     for x in workers:
         x.start()
     for x in workers:

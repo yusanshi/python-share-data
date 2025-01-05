@@ -22,12 +22,9 @@ class SharedNumpyArray(SharedMemory):
             assert isinstance(array, np.ndarray)
             assert identifier is None
             super().__init__(name=None, create=True, size=array.nbytes)
-            self.data = np.ndarray(array.shape,
-                                   dtype=array.dtype,
-                                   buffer=self.buf)
+            self.data = np.ndarray(array.shape, dtype=array.dtype, buffer=self.buf)
             self.data[:] = array[:]
-            self.identifier = self._obj2str(self.name, array.shape,
-                                            array.dtype)
+            self.identifier = self._obj2str(self.name, array.shape, array.dtype)
 
     def __repr__(self):
         return super().__repr__() + '\n' + self.data.__repr__()

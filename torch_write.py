@@ -1,17 +1,17 @@
-from torch.multiprocessing import Process, set_start_method, Lock
 import torch
+from torch.multiprocessing import Lock, Process, set_start_method
 
 
 def increase(data, lock):
     for _ in range(1000):
         with lock:
-            data -= 1
+            data += 1
 
 
 def decrease(data, lock):
     for _ in range(1000):
         with lock:
-            data += 1
+            data -= 1
 
 
 if __name__ == '__main__':

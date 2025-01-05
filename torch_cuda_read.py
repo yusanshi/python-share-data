@@ -1,5 +1,5 @@
-from torch.multiprocessing import Process, set_start_method
 import torch
+from torch.multiprocessing import Process, set_start_method
 
 
 def worker_fn(data):
@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     workers = []
     for _ in range(8):
-        workers.append(Process(target=worker_fn, args=(data, )))
+        workers.append(Process(target=worker_fn, args=(data,)))
     for x in workers:
         x.start()
     for x in workers:

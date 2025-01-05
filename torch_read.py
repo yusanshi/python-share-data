@@ -1,5 +1,5 @@
-from torch.multiprocessing import Process, set_start_method, Lock
 import torch
+from torch.multiprocessing import Lock, Process, set_start_method
 
 
 def worker_fn(data, lock):
