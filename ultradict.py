@@ -8,7 +8,8 @@ from UltraDict import UltraDict
 def worker_fn():
     with ultra.lock:
         # Note: ultra['numpy'][5000:] -= 1 not works
-        # TODO: an accurate explanation of why the following works
+        # but the following works:
+        # refer: https://stackoverflow.com/a/45870270/8418049
         temp = ultra['numpy']
         temp[5000:] -= 1
         ultra['numpy'] = temp
