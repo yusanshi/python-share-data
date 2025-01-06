@@ -1,26 +1,26 @@
-from multiprocessing import Process
+from multiprocessing import Lock, Manager, Process
 
 import numpy as np
-# pip install UltraDict
-from UltraDict import UltraDict
 
 
 def worker_fn():
-    with ultra.lock:
-        # Note: ultra['numpy'][5000:] -= 1 not works
+    with lock:
+        # Note: d['numpy'][5000:] -= 1 not works
         # instead, we need to re-assign the key to propagate the changes.
         # refer: https://docs.python.org/3/library/multiprocessing.html#proxy-objects
-        temp = ultra['numpy']
+        temp = d['numpy']
         temp[5000:] -= 1
-        ultra['numpy'] = temp
-        ultra['num'] += 1
+        d['numpy'] = temp
+        d['num'] += 1
 
 
 if __name__ == '__main__':
-    ultra = UltraDict()
-    ultra['key'] = 'value'
-    ultra['numpy'] = np.ones(shape=(10000, 100))
-    ultra['num'] = 0
+    lock = Lock()
+    manager = Manager()
+    d = manager.dict()
+    d['key'] = 'value'
+    d['numpy'] = np.ones(shape=(10000, 100))
+    d['num'] = 0
 
     workers = []
     for _ in range(8):
@@ -30,4 +30,4 @@ if __name__ == '__main__':
     for x in workers:
         x.join()
 
-    print(ultra)
+    print(d)

@@ -3,7 +3,7 @@
 Some examples of how to share data (especially tensors or arrays in deep learning tasks) between processes in Python.
 
 Tips:
-- Use `ultradict.py` for sharing small data.
+- Use `ultradict.py` or `manager_dict.py` for sharing small data.
 - Use `shm_*.py` or `torch_*.py` for sharing large tensors or arrays.
 
 Note: for Linux only.
@@ -65,5 +65,4 @@ torch_cuda_write.py:# TODO: why don't need the lock
 torch_cuda_write.py:# TODO: why don't need the share_memory_
 torch_cuda_write.py:# TODO: wrong results if the shared tensor is too big, e.g., size=(10000, 1000), even with a lock
 torch_read.py:        # data.sum()  # TODO: no lock -> low speed, why?
-ultradict.py:        # TODO: an accurate explanation of why the following works
 ```
